@@ -1,0 +1,19 @@
+﻿@model IEnumerable<string>
+
+<style>
+    .containerData {
+        border: 2px solid #ccc;
+        width: 400px;
+        height: 400px;
+        overflow-y: scroll;
+    }
+</style>
+
+<h4>Recursive</h4>
+<div class="containerData">
+    @foreach (var item in Model)
+    {
+        <a href="@item" target="_blank">@item</a>
+    }
+</div>
+<label><b>Count : @Model.Count()</b></label>

@@ -1,0 +1,90 @@
+﻿@model Mvc.Models.Request
+
+
+<div class="card">
+    <div class="card-header">
+        <h4>Request</h4>
+    </div>
+</div>
+<div class="container pt-5">
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-3"> @Html.TextBoxFor(a=>a.Name,new {@class = "form-control" ,@id="Name", @placeholder = "Request Name"}) </div>
+                    <div class="col-md-3">  @Html.TextBoxFor(a=>a.RequestType,new {@class = "form-control", @id="RequestType" ,  @placeholder = "Request Type"})</div>
+                    <div class="col-md-3">  @Html.TextAreaFor(a=>a.RequestMessage,new {@class = "form-control",@id="RequestMessage",  @placeholder = "Request Message"})</div>
+                    <div class="col-md-3"> <input type="button" value="Create" id="CreateBtn" class="btn btn-sm btn-success mt-3" /></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-11">
+                </div>
+                <div class="col-md-1">
+                    <a value="Refresh" id="Refreshbtn" class="btn btn-sm btn-info">
+                        Refresh
+                    </a>
+                </div>
+            </div>
+           
+            
+           
+            <div class="row">
+                <div class="col-md-4" id="divForg"></div>
+                <div class="col-md-4" id="divdelay"></div>
+                <div class="col-md-4" id="divrec"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+    function GetData() {
+        $('#divForg').load('@Url.Action("GetFire", "Request")');
+        $('#divdelay').load('@Url.Action("GetDelay", "Request")');
+        $('#divrec').load('@Url.Action("GetRecursive", "Request")');
+    }
+
+
+    $(document).ready(function () {
+        setTimeout(GetData(),5000);
+
+        $('#Refreshbtn').click(function () {
+            GetData();
+        });
+
+        $('#CreateBtn').click(function () {       
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Create","Request")",
+                data: {
+                    Name: $("#Name").val(),
+                    RequestType: $("#RequestType").val(),
+                    RequestMessage: $("#RequestMessage").val(),
+                },
+                success: function (data) {
+                    $("#Name").val('');
+                    $("#RequestType").val('');
+                    $("#RequestMessage").val('');
+                    if (data)
+                    alert("Request has been Created successfully.");
+                    else
+                        alert("Request Creation Failed.");
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        });
+        window.setInterval(function () {
+            GetData();
+        }, 9000);
+    });
+</script>
