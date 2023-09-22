@@ -24,7 +24,7 @@ namespace Mvc.Services.Impl
             string requestData = string.Empty;
             foreach (var request in requests)
             {
-                requestData += string.Format("{0}|{1}{2}{3}", request.Name, request.RequestType, request.RequestMessage, Environment.NewLine);
+                requestData += string.Format("{0}|{1}{2}{3}", request.Name, request.RequestType, request.RequestMessageText, Environment.NewLine);
 
             }
             return requestData;
