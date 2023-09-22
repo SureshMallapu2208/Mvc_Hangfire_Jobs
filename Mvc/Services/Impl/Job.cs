@@ -20,7 +20,7 @@ namespace Mvc.Services.Impl
 
         }
 
-        public IEnumerable<string> GetDelayFilesData()
+        public IEnumerable<string> GetDelayFiles()
         {
             return GetJobs("DelayJob");
         }
