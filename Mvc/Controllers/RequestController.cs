@@ -21,7 +21,7 @@ namespace Mvc.Controllers
         [HttpPost]
         public IActionResult Create(string Name, string RequestType, string RequestMessage)
         {
-            var result = _request.AddAsync(new Models.Request() { Name = Name, RequestType = RequestType, RequestMessage = RequestMessage });
+            var result = _request.AddAsync(new Models.Request() { Name = Name, RequestType = RequestType, RequestMessageText = RequestMessage });
 
             return Json(result.Result);
         }
