@@ -2,7 +2,7 @@
 {
     public interface IJob
     {
-        IEnumerable<string> GetDelayFiles();
+        IEnumerable<string> GetDelayFilesDetails();
         IEnumerable<string> GetRecursiveFiles();
         IEnumerable<string> GetFireandForget();
     }
