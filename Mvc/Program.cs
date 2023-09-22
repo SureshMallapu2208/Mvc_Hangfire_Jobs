@@ -36,7 +36,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 BackgroundJob.Enqueue<IJob>(x => x.GetFireandForget());
-BackgroundJob.Schedule<IJob>(x => x.GetDelayFiles(), TimeSpan.FromMinutes(1));
+BackgroundJob.Schedule<IJob>(x => x.GetDelayFilesData(), TimeSpan.FromMinutes(1));
 RecurringJob.AddOrUpdate<IJob>(x => x.GetRecursiveFiles(), Cron.MinuteInterval(2));
 
 app.UseHttpsRedirection();
